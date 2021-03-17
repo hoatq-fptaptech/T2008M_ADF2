@@ -16,7 +16,13 @@
       <TextField fx:id="txtAge" layoutX="256.0" layoutY="94.0" prefHeight="27.0" prefWidth="83.0" promptText="Tuoi" />
       <TextField fx:id="txtMark" layoutX="358.0" layoutY="94.0" prefHeight="27.0" prefWidth="83.0" promptText="Diem thi" />
       <Button onAction="#input" layoutX="464.0" layoutY="94.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="77.0" text="Submit" />
-      <TextArea fx:id="txtRs" layoutX="53.0" layoutY="179.0" prefHeight="200.0" prefWidth="490.0" promptText="Danh sach" style="-fx-border-color: orange;" />
+      <TableView fx:id="txtRs" layoutX="53.0" layoutY="182.0" prefHeight="368.0" prefWidth="490.0">
+         <columns>
+            <TableColumn fx:id="tenSV" prefWidth="277.0" text="Ten SV" />
+            <TableColumn fx:id="tuoiSV" minWidth="0.0" prefWidth="105.0" text="Tuoi" />
+            <TableColumn fx:id="diemSV" prefWidth="105.0" text="Diem thi" />
+         </columns>
+      </TableView>
       <Text fx:id="txtValidate" disable="true" fill="#ee0a0a" layoutX="54.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-color: red;" wrappingWidth="387.22900390625" />
       <Button onAction="#sort" fx:id="btnSort" layoutX="53.0" layoutY="141.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="131.0" text="Thap den cao" />
    </children>

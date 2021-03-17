@@ -1,24 +1,39 @@
 package sample.asm1;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.ResourceBundle;
 
-public class Controller {
+public class Controller implements Initializable {
     public TextField txtName;
     public TextField txtAge;
     public TextField txtMark;
-    public TextArea txtRs;
     public Button btnSort;
     public Text txtValidate;
+    public TableView<SinhVien> txtRs;
+    public TableColumn<SinhVien,String> tenSV;
+    public TableColumn<SinhVien,Integer> tuoiSV;
+    public TableColumn<SinhVien,Integer> diemSV;
 
-    ArrayList<SinhVien> ds = new ArrayList<>();
+    ObservableList<SinhVien> ds = FXCollections.observableArrayList();
     static boolean sortType = false;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        tenSV.setCellValueFactory(new PropertyValueFactory<SinhVien,String>("name"));
+        tuoiSV.setCellValueFactory(new PropertyValueFactory<SinhVien,Integer>("age"));
+        diemSV.setCellValueFactory(new PropertyValueFactory<SinhVien,Integer>("mark"));
+    }
 
     public void input(){
         try {
@@ -28,15 +43,12 @@ public class Controller {
             if(!n.isEmpty()){
                 SinhVien s = new SinhVien(n,a,m);
                 ds.add(s);
-                String txt = "";
-                for(SinhVien i:ds){
-                    txt+= i.getName()+"--"+i.getAge()+"--"+i.getMark()+"\n";
-                }
-                txtRs.setText(txt);
+
                 txtValidate.setText("");
                 txtName.setText("");
                 txtAge.setText("");
                 txtMark.setText("");
+                txtRs.setItems(ds);
             }else {
                 txtValidate.setText("Vui lòng nhập tên, tuổi và điểm thi");
                 txtValidate.setDisable(false);
@@ -71,6 +83,6 @@ public class Controller {
         for(SinhVien i:ds){
             txt+= i.getName()+"--"+i.getAge()+"--"+i.getMark()+"\n";
         }
-        txtRs.setText(txt);
+        //txtRs.setText(txt);
     }
 }
