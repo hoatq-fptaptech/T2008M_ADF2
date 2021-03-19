@@ -25,6 +25,8 @@ public class Controller implements Initializable {
     public TableColumn<SinhVien,Integer> tuoiSV;
     public TableColumn<SinhVien,Integer> diemSV;
 
+    public static Integer identity = 0;
+    public static SinhVien editSinhVien;
     ObservableList<SinhVien> ds = FXCollections.observableArrayList();
     static boolean sortType = false;
 
@@ -41,14 +43,29 @@ public class Controller implements Initializable {
             int a = Integer.parseInt(txtAge.getText());
             int m = Integer.parseInt(txtMark.getText());
             if(!n.isEmpty()){
-                SinhVien s = new SinhVien(n,a,m);
-                ds.add(s);
-
+                if(editSinhVien != null){
+                    editSinhVien.setName(n);
+                    editSinhVien.setAge(a);
+                    editSinhVien.setMark(m);
+                    for(SinhVien s:ds){
+                        if(s.getId()== editSinhVien.getId()){
+                            s = editSinhVien;
+                            break;
+                        }
+                    }
+                    txtRs.refresh();
+                }else {
+                    identity++;
+                    SinhVien s = new SinhVien(identity,n,a,m);
+                    ds.add(s);
+                    txtRs.setItems(ds);
+                }
+                editSinhVien = null;
                 txtValidate.setText("");
                 txtName.setText("");
                 txtAge.setText("");
                 txtMark.setText("");
-                txtRs.setItems(ds);
+
             }else {
                 txtValidate.setText("Vui lòng nhập tên, tuổi và điểm thi");
                 txtValidate.setDisable(false);
@@ -84,5 +101,13 @@ public class Controller implements Initializable {
             txt+= i.getName()+"--"+i.getAge()+"--"+i.getMark()+"\n";
         }
         //txtRs.setText(txt);
+    }
+
+    public void update(){
+        SinhVien s = txtRs.getSelectionModel().getSelectedItem();
+        txtName.setText(s.getName());
+        txtAge.setText(s.getAge().toString());
+        txtMark.setText(s.getMark().toString());
+        editSinhVien = s;
     }
 }

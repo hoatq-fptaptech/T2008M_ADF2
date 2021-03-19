@@ -24,6 +24,6 @@
          </columns>
       </TableView>
       <Text fx:id="txtValidate" disable="true" fill="#ee0a0a" layoutX="54.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-color: red;" wrappingWidth="387.22900390625" />
-      <Button onAction="#sort" fx:id="btnSort" layoutX="53.0" layoutY="141.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="131.0" text="Thap den cao" />
+      <Button onAction="#update" fx:id="btnSort" layoutX="53.0" layoutY="141.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="131.0" text="Cap nhat" />
    </children>
 </Pane>
